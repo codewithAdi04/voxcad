@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg:            #050a14;
+  --surface:       #080f1e;
+  --surface-2:     #0d1628;
+  --surface-hover: rgba(0,200,255,0.06);
+
+  --border:        rgba(0,200,255,0.13);
+  --border-strong: rgba(0,200,255,0.28);
+
+  --text:          #e2eaf8;
+  --text-secondary:#8ba3c7;
+  --muted:         rgba(226,234,248,0.3);
+
+  --cyan:          #00d4ff;
+  --cyan-dim:      rgba(0,212,255,0.12);
+  --cyan-glow:     rgba(0,212,255,0.22);
+  --violet:        #a855f7;
+  --violet-dim:    rgba(168,85,247,0.12);
+  --red:           #ff4d6a;
+  --red-dim:       rgba(255,77,106,0.1);
+
+  --success:       #22d3a0;
+  --warning:       #f59e0b;
+  --error:         #ff4d6a;
+
+  --shadow:        0 8px 32px rgba(0,0,0,0.5);
+  --shadow-cyan:   0 0 20px rgba(0,212,255,0.15);
+
+  --radius-sm:     8px;
+  --radius-md:     12px;
+  --radius-lg:     16px;
+
+  --font-display:  'Syne', sans-serif;
+  --font-mono:     'Space Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  overflow: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(14px);
+}
+
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,220,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,220,255,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+
+.scene-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,190,255,0.11) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-display);
+  transition: all 0.15s ease;
+}
+
+button:hover { transform: translateY(-1px); }
+
+input, textarea { font-family: var(--font-mono); color: var(--text); }
+input::placeholder, textarea::placeholder { color: var(--muted); }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.pill .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pill-off {
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.pill-on {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid var(--border-strong);
+}
+
+.pill-on .dot { animation: dot-pulse 1.4s ease-in-out infinite; }
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.65); }
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0,200,255,0.45);
+  margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+.icon-circle {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; flex-shrink: 0;
+}
+
+.ic-cyan   { background: var(--cyan-dim); }
+.ic-violet { background: var(--violet-dim); }
+.ic-red    { background: var(--red-dim); }
+
+.blink {
+  color: var(--cyan);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0,200,255,0.55);
+  pointer-events: none;
+  animation: float-up linear infinite;
+}
+
+@keyframes float-up {
+  0%   { transform: translateY(0) translateX(0); opacity: 0.55; }
+  100% { transform: translateY(-90px) translateX(16px); opacity: 0; }
+}
